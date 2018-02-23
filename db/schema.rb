@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223171316) do
+ActiveRecord::Schema.define(version: 20180223173216) do
 
   create_table "makes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "company"
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 20180223171316) do
     t.index ["make_id"], name: "index_models_on_make_id"
   end
 
+  create_table "options", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.text "description"
+    t.decimal "price", precision: 7, scale: 2
+    t.string "promotion_code"
+    t.bigint "model_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["model_id"], name: "index_options_on_model_id"
+  end
+
   create_table "years", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "year"
     t.datetime "created_at", null: false
@@ -36,4 +47,5 @@ ActiveRecord::Schema.define(version: 20180223171316) do
   end
 
   add_foreign_key "models", "makes"
+  add_foreign_key "options", "models"
 end
