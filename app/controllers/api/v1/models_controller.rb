@@ -4,7 +4,7 @@ class Api::V1::ModelsController < ApplicationController
   end
 
   def show
-    render json: Model.all
+    render json: Model.find(params[:id])
   end
 
   def create
