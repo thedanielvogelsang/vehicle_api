@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223182933) do
+ActiveRecord::Schema.define(version: 20180223194308) do
 
   create_table "makes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "company"
@@ -26,7 +26,9 @@ ActiveRecord::Schema.define(version: 20180223182933) do
     t.bigint "make_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "year_id"
     t.index ["make_id"], name: "index_models_on_make_id"
+    t.index ["year_id"], name: "index_models_on_year_id"
   end
 
   create_table "options", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -52,13 +54,11 @@ ActiveRecord::Schema.define(version: 20180223182933) do
   create_table "vehicles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "make_id"
     t.bigint "model_id"
-    t.bigint "year_id"
     t.string "vin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["make_id"], name: "index_vehicles_on_make_id"
     t.index ["model_id"], name: "index_vehicles_on_model_id"
-    t.index ["year_id"], name: "index_vehicles_on_year_id"
   end
 
   create_table "years", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -68,10 +68,10 @@ ActiveRecord::Schema.define(version: 20180223182933) do
   end
 
   add_foreign_key "models", "makes"
+  add_foreign_key "models", "years"
   add_foreign_key "options", "models"
   add_foreign_key "vehicle_options", "options"
   add_foreign_key "vehicle_options", "vehicles"
   add_foreign_key "vehicles", "makes"
   add_foreign_key "vehicles", "models"
-  add_foreign_key "vehicles", "years"
 end

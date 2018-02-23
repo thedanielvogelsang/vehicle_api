@@ -12,7 +12,8 @@ RSpec.describe Option, type: :model do
 
     it "is created with valid attributes" do
     make = Make.create(company: 'Honda', company_desc: DESC)
-    model = Model.create(name: 'Civic', make_id: make.id)
+    year = Year.create(year: 2009)
+    model = Model.create(name: 'Civic', make_id: make.id, year_id: year.id)
     #saving requires name,
       invalid_2 = Option.new(description: 'bluetooth description', price: 123.99, promotion_code: 'A', model_id: model.id)
     # description,
@@ -47,13 +48,15 @@ RSpec.describe Option, type: :model do
   context 'associations' do
     it "is can call its make and model" do
       make = Make.create(company: 'Honda', company_desc: DESC)
-      model = Model.create(name: 'Civic', make_id: make.id)
+      year = Year.create(year: 2009)
+      model = Model.create(name: 'Civic', make_id: make.id, year_id: year.id)
       option = Option.new(name: 'Bluetooth2', description: 'bluetooth description', price: 123.99, model_id: model.id)
 
       expect(option.model.class).to be(Model)
       expect(option.model.make.class).to be(Make)
       expect(option.model.name).to eq('Civic')
       expect(option.model.make.company).to eq('Honda')
+      expect(option.model.year.year).to eq(2009)
     end
   end
 end

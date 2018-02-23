@@ -26,13 +26,14 @@ RSpec.describe Make, type: :model do
   context 'associations' do
     it 'can call all its associated models' do
       make = Make.create(company: 'Honda', company_desc: DESC)
-      model1 = Model.create(name: 'Civic', make_id: make.id)
-      model2 = Model.create(name: 'Accord', make_id: make.id)
-      model3 = Model.create(name: 'Vue', make_id: make.id)
-
+      year = Year.create(year: 2003)
+      model1 = Model.create(name: 'Civic', make_id: make.id, year_id: year.id)
+      model2 = Model.create(name: 'Accord', make_id: make.id, year_id: year.id)
+      model3 = Model.create(name: 'Vue', make_id: make.id, year_id: year.id)
       expect(make.models.count).to eq(3)
       expect(make.models.first.class).to be(Model)
       expect(make.models.last.name).to eq("Vue")
+      expect(make.models.first.year.year).to eq(2003)
     end
   end
 end
