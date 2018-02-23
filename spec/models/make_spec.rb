@@ -1,5 +1,6 @@
 require 'rails_helper'
 require_relative './honda_description'
+require 'database_cleaner'
 
 RSpec.describe Make, type: :model do
   context 'validations' do
