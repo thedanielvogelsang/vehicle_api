@@ -65,7 +65,6 @@ RSpec.describe Vehicle, type: :model do
       expect(vehicle_1.options.first.name).to eq('USB-port')
       expect(vehicle_2.options.count).to eq(3)
       expect(vehicle_2.options.last.name).to eq('V2 upgrade')
-      byebug
     end
   end
 end
