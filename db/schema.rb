@@ -21,14 +21,4 @@ ActiveRecord::Schema.define(version: 20180223163652) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "vehicle_faker_data", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "year", null: false, unsigned: true
-    t.string "make", limit: 50
-    t.string "model", limit: 50, null: false
-    t.index ["make"], name: "I_vehicle_faker_data_make"
-    t.index ["model"], name: "I_vehicle_faker_data_model"
-    t.index ["year", "make", "model"], name: "U_vehicle_faker_data_year_make_model", unique: true
-    t.index ["year"], name: "I_vehicle_faker_data_year"
-  end
-
 end
