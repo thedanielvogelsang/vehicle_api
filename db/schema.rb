@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223173216) do
+ActiveRecord::Schema.define(version: 20180223181657) do
 
   create_table "makes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "company"
@@ -40,6 +40,20 @@ ActiveRecord::Schema.define(version: 20180223173216) do
     t.index ["model_id"], name: "index_options_on_model_id"
   end
 
+  create_table "vehicles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "make_id"
+    t.bigint "model_id"
+    t.bigint "year_id"
+    t.bigint "options_id"
+    t.string "vin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["make_id"], name: "index_vehicles_on_make_id"
+    t.index ["model_id"], name: "index_vehicles_on_model_id"
+    t.index ["options_id"], name: "index_vehicles_on_options_id"
+    t.index ["year_id"], name: "index_vehicles_on_year_id"
+  end
+
   create_table "years", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "year"
     t.datetime "created_at", null: false
@@ -48,4 +62,8 @@ ActiveRecord::Schema.define(version: 20180223173216) do
 
   add_foreign_key "models", "makes"
   add_foreign_key "options", "models"
+  add_foreign_key "vehicles", "makes"
+  add_foreign_key "vehicles", "models"
+  add_foreign_key "vehicles", "options", column: "options_id"
+  add_foreign_key "vehicles", "years"
 end
