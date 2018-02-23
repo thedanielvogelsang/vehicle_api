@@ -4,7 +4,7 @@ class Api::V1::OptionsController < ApplicationController
   end
 
   def show
-    render json: Option.all
+    render json: Option.find(params["id"])
   end
 
   def create
