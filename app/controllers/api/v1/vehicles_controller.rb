@@ -4,7 +4,7 @@ class Api::V1::VehiclesController < ApplicationController
   end
 
   def show
-    render json: Vehicle.all
+    render json: Vehicle.find(params[:id])
   end
 
   def create
@@ -17,5 +17,5 @@ class Api::V1::VehiclesController < ApplicationController
 
   def destroy
     render json: Vehicle.all
-  end 
+  end
 end
