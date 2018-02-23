@@ -23,4 +23,16 @@ RSpec.describe Make, type: :model do
       expect(invalid_3.save).to be false
     end
   end
+  context 'associations' do
+    it 'can call all its associated models' do
+      make = Make.create(company: 'Honda', company_desc: DESC)
+      model1 = Model.create(name: 'Civic', make_id: make.id)
+      model2 = Model.create(name: 'Accord', make_id: make.id)
+      model3 = Model.create(name: 'Vue', make_id: make.id)
+
+      expect(make.models.count).to eq(3)
+      expect(make.models.first.class).to be(Model)
+      expect(make.models.last.name).to eq("Vue")
+    end
+  end
 end

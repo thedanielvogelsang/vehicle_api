@@ -4,7 +4,7 @@ require 'database_cleaner'
 
 RSpec.describe Model, type: :model do
   context 'validations' do
-    
+
     it{is_expected.to validate_presence_of(:name) }
     it{should belong_to(:make) }
 
@@ -23,6 +23,26 @@ RSpec.describe Model, type: :model do
     # name uniqueness
       invalid_3 = Model.new(name: 'Civic', make_id: make.id)
       expect(invalid_3.save).to be false
+    end
+  end
+  context 'associations' do
+    it 'can call its make' do
+      make = Make.create(company: 'Honda', company_desc: DESC)
+      model = Model.create(name: 'Civic', make_id: make.id)
+
+      expect(model.make.class).to be(Make)
+      expect(model.make.company_desc).to eql(DESC)
+    end
+    it "is can call its associated model options" do
+      make = Make.create(company: 'Honda', company_desc: DESC)
+      model = Model.create(name: 'Civic', make_id: make.id)
+      op_1 = Option.create(name: 'Bluetooth', description: 'bluetooth description', price: 200.99, promotion_code: 'ABC123', model_id: model.id)
+      op_2 = Option.create(name: 'USB-port', description: 'port description', price: 13.99, model_id: model.id)
+      op_3 = Option.create(name: 'V2 upgrade', description: 'cylinder upgrade description', price: 2399.99, model_id: model.id)
+
+      expect(model.options.first.class).to eq(Option)
+      expect(model.options.count).to eq(3)
+      expect(model.options.second.name).to eq('USB-port')
     end
   end
 end

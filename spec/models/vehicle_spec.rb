@@ -45,6 +45,17 @@ RSpec.describe Vehicle, type: :model do
     it{is_expected.to belong_to(:model)}
     it{is_expected.to belong_to(:year)}
 
+    it 'should be able to call its make, model, and year' do
+      vehicle = Vehicle.new(make_id: @make.id, model_id: @model.id, year_id: @year.id, vin: "LLDWXZLG77VK2LUUF")
+
+      expect(vehicle.make.class).to be(Make)
+      expect(vehicle.make.company).to eq('Honda')
+      expect(vehicle.model.class).to be(Model)
+      expect(vehicle.model.name).to eq('Civic')
+      expect(vehicle.year.class).to be(Year)
+      expect(vehicle.year.year).to eq(2007)
+    end
+
     it "should be able to collect many options or have none" do
       vehicle_1 = Vehicle.new(make_id: @make.id, model_id: @model.id, year_id: @year.id, vin: "LLDWXZLG77VK2LUUF")
       vehicle_2 = Vehicle.new(make_id: @make.id, model_id: @model.id, year_id: @year.id, vin: "SOMETHING DIFFERENT")
@@ -54,6 +65,7 @@ RSpec.describe Vehicle, type: :model do
       vehicle_2.options << @op_2
       vehicle_2.options << @op_3
       vehicle_2.save
+      
       expect(vehicle_1.options.count).to eq(1)
       expect(vehicle_1.options.first.name).to eq('USB-port')
       expect(vehicle_2.options.count).to eq(3)
