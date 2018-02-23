@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223163652) do
+ActiveRecord::Schema.define(version: 20180223165751) do
 
   create_table "makes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "company"
@@ -21,4 +21,13 @@ ActiveRecord::Schema.define(version: 20180223163652) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "models", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.bigint "make_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["make_id"], name: "index_models_on_make_id"
+  end
+
+  add_foreign_key "models", "makes"
 end
