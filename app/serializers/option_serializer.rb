@@ -1,4 +1,6 @@
 class OptionSerializer < ActiveModel::Serializer
+  cache
+  delegate :cache_key, :to => :object
   attributes :id, :name, :description, :unit_price, :promotion_code, :available_for
 
   def unit_price

@@ -1,3 +1,5 @@
 class MakeSerializer < ActiveModel::Serializer
-  attributes :id, :company, :company_desc, :company_motto, :ceo_statement
+  cache
+  delegate :cache_key, :to => :object
+  attributes :company, :id, :company_desc, :company_motto, :ceo_statement
 end

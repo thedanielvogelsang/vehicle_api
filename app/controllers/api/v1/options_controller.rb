@@ -1,6 +1,6 @@
 class Api::V1::OptionsController < ApplicationController
   def index
-    render json: Option.all
+    render json: Option.order("RAND()").limit(100)
   end
 
   def show

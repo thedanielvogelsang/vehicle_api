@@ -1,6 +1,6 @@
 class Api::V1::VehiclesController < ApplicationController
   def index
-    render json: Vehicle.all
+    render json: Vehicle.order("RAND()").limit(100)
   end
 
   def show
