@@ -51,7 +51,7 @@ Things you may want to cover:
     source schema.sql;
     source data.sql;
   ```
-  then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
+### then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
 
   ===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== =====
 
