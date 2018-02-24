@@ -4,11 +4,12 @@ require 'faker'
 require 'database_cleaner'
 
 task import: :environment do
-  s = SeedManager.new
-  makes = s.makes_data
-  models = s.models_data
-  years = s.years_data
+  seedm = SeedManager.new
+  makes = seedm.makes_data
+  models = seedm.models_data
+  years = seedm.years_data
 
+  puts 'Begginning seed now...'
   7268.times do |i|
     make_last = Make.last
     make = Make.find_or_create_by(company: makes.shift,
@@ -16,12 +17,13 @@ task import: :environment do
                         company_motto: Faker::Company.catch_phrase,
                         ceo_statement: Faker::SiliconValley.quote
                         )
-    make ? make = make_last : nil
+    make ? nil : make = make_last
     year = Year.find_or_create_by(year: years.shift)
     model_last = Model.last
     model = Model.find_or_create_by(name: models.shift, year_id: year.id, make_id: make.id)
-    model ? model = model_last : nil
+    model ? nil : model = model_last
     Vehicle.create(make_id: make.id, model_id: model.id, vin: Faker::Vehicle.vin)
+    i % 1000 == 0 ? (puts "still seeding...#{7 - i/1000} cycles left") : nil
   end
 
   200.times do |n|
@@ -33,8 +35,10 @@ task import: :environment do
                         price: (Faker::Commerce.price*10),
                         promotion_code: Faker::Commerce.promotion_code,
                         model_id: model.id)
-    option ? option = op_last : nil
+    option ? nil : option = op_last
     v = Vehicle.find(num)
     v.options << option
+    n % 50 == 0 ? (puts "decking our vehicles with options...") : nil
   end
+  puts 'Finished seeding databases, ready to rock!'
 end
