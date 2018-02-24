@@ -67,8 +67,8 @@ Things you may want to cover:
     * models
     * vehicles
     * options
-    
-===== ****** ======= ******
+
+======       ******       =======       ******
 
   **for testing, run**
   ```shell
