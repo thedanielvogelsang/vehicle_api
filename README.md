@@ -8,6 +8,9 @@ Things you may want to cover:
 * Ruby version
 
 * System dependencies
+  mysql (installation instructions here[])
+  ruby (installation instructions here[])
+  rails (installation instructions here[])
 
 * Configuration
 
@@ -20,5 +23,52 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+  clone repo and cd into it
+  run
+  ```shell
+    gem install bundle
+    bundle install
+    rake db:drop
+    rake db:create
+    rake db:migrate
+  ```
+
+  visit XXXX and follow the instructions using the below username and password (also found in database.yml)
+
+  clone their repo in a different place on your computer; cd into it (i like to open two different bash windows, one for mysql, and the other for my Rails app);
+
+  ```shell
+    username: dvog_temp
+    password: Blink3r!
+  ```
+  using the above credentials for mysql access, and follow their instructions:
+  cd into their repo after cloning, then run:
+  ```shell
+    mysql -u dvog_temp -p
+    $> Blink3r!
+    use vehicle_api_development
+    source schema.sql;
+    source data.sql;
+  ```
+  then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
+
+  **to see the api online, run**
+  ```shell
+    rails s
+  ```
+  and visit 'http://localhost:3000/api/v1/<resource>' to see each json response,
+  ***use Postman to test the create, update, and delete functionality.***
+  resource list:
+    * makes
+    * models
+    * vehicles
+    * options
+
+  **for testing, run**
+  ```shell
+    rake db:migrate RAILS_ENV=test
+    rspec
+  ```
+
 
 * ...
