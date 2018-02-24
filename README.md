@@ -29,12 +29,13 @@ Things you may want to cover:
     gem install bundle
     bundle install
     rake db:drop
+    rake db:create
     rake db:migrate
   ```
 
   visit XXXX and follow the instructions using the below username and password (also found in database.yml)
 
-  clone their repo in a different place on your computer; cd into it;
+  clone their repo in a different place on your computer; cd into it (i like to open two different bash windows, one for mysql, and the other for my Rails app);
 
   ```shell
     username: dvog_temp
@@ -43,8 +44,11 @@ Things you may want to cover:
   using the above credentials for mysql access, and follow their instructions:
   cd into their repo after cloning, then run:
   ```shell
-
-    rake import
+    mysql -u dvog_temp -p
+    $> Blink3r!
+    use vehicle_api_development
+    source schema.sql;
+    source data.sql;
   ```
   then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
 

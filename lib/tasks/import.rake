@@ -22,7 +22,7 @@ task import: :environment do
     model_last = Model.last
     model = Model.find_or_create_by(name: models.shift, year_id: year.id, make_id: make.id)
     model ? nil : model = model_last
-    Vehicle.create(make_id: make.id, model_id: model.id, vin: Faker::Vehicle.vin)
+    Vehicle.create(make_id: make.id, model_id: model.id, vin: Faker::Vehicle.vin + "#{i}")
     i % 1000 == 0 ? (puts "still seeding...#{7 - i/1000} cycles left") : nil
   end
 
