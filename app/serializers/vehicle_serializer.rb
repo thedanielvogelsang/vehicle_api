@@ -1,5 +1,8 @@
 class VehicleSerializer < ActiveModel::Serializer
-  attributes :vehicle, :vin, :id, :year, :make, :model, :options, :price
+  cache only: [:options, :price, :vin]
+  delegate :cache_key, :to => :object
+
+  attributes :vehicle, :id, :year, :make, :model, :options, :price, :vin
 
   def vehicle
     year.to_s + ' ' + make + ' ' + model + ', ' + condition
@@ -18,7 +21,7 @@ class VehicleSerializer < ActiveModel::Serializer
   end
 
   def options
-    object.options.to_a.map{|o| o.name}.uniq!
+    object.options.to_a.map{|o| o.name}.uniq
   end
 
   def condition
