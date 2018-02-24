@@ -53,7 +53,7 @@ Things you may want to cover:
   ```
   then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
 
-  ===== ====== ====== ====== ====== ====== ====== ====== ===== =====
+  ===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== =====
 
   **to see the api online, run**
   ```shell
