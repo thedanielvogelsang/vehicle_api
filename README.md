@@ -63,10 +63,16 @@ Things you may want to cover:
   **use Postman to test the create, update, and delete functionality.**
 
   api resource list (all RESTful routes for each resource are available for CRUD):
+
     * makes
+
     * models
+
     * vehicles
+
     * options
+
+  ===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== =====
 
   **for testing, run**
   ```shell
