@@ -24,19 +24,46 @@ Things you may want to cover:
 
 * Deployment instructions
   clone repo and cd into it
-  run ```rake db:drop```
+  run
+  ```shell
+    gem install bundle
+    bundle install
+    rake db:drop
+    rake db:migrate
+  ```
 
   visit XXXX and follow the instructions using the below username and password (also found in database.yml)
 
   clone their repo in a different place on your computer; cd into it;
 
-  ```username: dvog_temp
+  ```shell
+    username: dvog_temp
     password: Blink3r!
   ```
   using the above credentials for mysql access, and follow their instructions:
   cd into their repo after cloning, then run:
+  ```shell
+
+    rake import
   ```
-    
+  then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
+
+  **to see the api online, run**
+  ```shell
+    rails s
+  ```
+  and visit 'http://localhost:3000/api/v1/<resource>' to see each json response,
+  ***use Postman to test the create, update, and delete functionality.***
+  resource list:
+    * makes
+    * models
+    * vehicles
+    * options
+
+  **for testing, run**
+  ```shell
+    rake db:migrate RAILS_ENV=test
+    rspec
   ```
 
 
