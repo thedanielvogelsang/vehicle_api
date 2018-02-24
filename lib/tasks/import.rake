@@ -26,7 +26,8 @@ task import: :environment do
     i % 1000 == 0 ? (puts "still seeding...#{7 - i/1000} cycles left") : nil
   end
 
-  200.times do |n|
+  (Vehicle.count).times do |n|
+    n == 0 ? next : nil
     (n/6) == 0 ? num = 20 : num = n/6
     model = Model.find(num)
     op_last = Option.last
@@ -36,7 +37,7 @@ task import: :environment do
                         promotion_code: Faker::Commerce.promotion_code,
                         model_id: model.id)
     option.id ? nil : option = op_last
-    v = Vehicle.find(num)
+    v = Vehicle.find(n)
     v.options << option
     n % 50 == 0 ? (puts "decking our vehicles with options...") : nil
   end
