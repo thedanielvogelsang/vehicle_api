@@ -33,7 +33,7 @@ Things you may want to cover:
     rake db:migrate
   ```
 
-  visit XXXX and follow the instructions using the below username and password (also found in database.yml)
+  visit https://github.com/n8barr/automotive-model-year-data and follow the instructions using the below username and password ***instead of root***
 
   clone their repo in a different place on your computer; cd into it (i like to open two different bash windows, one for mysql, and the other for my Rails app);
 
@@ -41,7 +41,8 @@ Things you may want to cover:
     username: dvog_temp
     password: Blink3r!
   ```
-  using the above credentials for mysql access, and follow their instructions:
+  using the above credentials for mysql access, open up a connection to mysql and source their data:
+
   cd into their repo after cloning, then run:
   ```shell
     mysql -u dvog_temp -p
@@ -52,13 +53,16 @@ Things you may want to cover:
   ```
   then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
 
+  ===== ====== ====== ====== ====== ====== ====== ====== ===== =====
+
   **to see the api online, run**
   ```shell
     rails s
   ```
-  and visit 'http://localhost:3000/api/v1/<resource>' to see each json response,
-  ***use Postman to test the create, update, and delete functionality.***
-  resource list:
+  and visit "http://localhost:3000/api/v1/\<resource\>" to see each json response,
+  **use Postman to test the create, update, and delete functionality.**
+
+  api resource list (all RESTful routes for each resource are available for CRUD):
     * makes
     * models
     * vehicles
