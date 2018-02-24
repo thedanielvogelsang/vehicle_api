@@ -1,4 +1,6 @@
 class VehicleSerializer < ActiveModel::Serializer
+  cache only: [:vehicle, :options, :price]
+  delegate :cache_key, :to => :object
   attributes :vehicle, :vin, :id, :year, :make, :model, :options, :price
 
   def vehicle

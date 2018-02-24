@@ -1,7 +1,7 @@
 class ModelSerializer < ActiveModel::Serializer
-  attributes :id, :name, :make
+  attributes :id, :name, :manufacturer
 
-  def make
+  def manufacturer
     object.make.company
   end
 

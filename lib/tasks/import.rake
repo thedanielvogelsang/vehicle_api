@@ -1,5 +1,5 @@
 require_relative '../../app/helpers/seed_manager'
-require_relative '..//option_list'
+require_relative '../option_list'
 require 'faker'
 require 'database_cleaner'
 
@@ -17,12 +17,12 @@ task import: :environment do
                         company_motto: Faker::Company.catch_phrase,
                         ceo_statement: Faker::SiliconValley.quote
                         )
-    make ? nil : make = make_last
+    make.id ? nil : make = make_last
     year = Year.find_or_create_by(year: years.shift)
     model_last = Model.last
     model = Model.find_or_create_by(name: models.shift, year_id: year.id, make_id: make.id)
-    model ? nil : model = model_last
-    Vehicle.create(make_id: make.id, model_id: model.id, vin: Faker::Vehicle.vin + "#{i}")
+    model.id ? nil : model = model_last
+    i % 5 == 0 ? Vehicle.create(make_id: make.id, model_id: model.id, vin: Faker::Vehicle.vin + "#{i}") : nil
     i % 1000 == 0 ? (puts "still seeding...#{7 - i/1000} cycles left") : nil
   end
 
@@ -35,7 +35,7 @@ task import: :environment do
                         price: (Faker::Commerce.price*10),
                         promotion_code: Faker::Commerce.promotion_code,
                         model_id: model.id)
-    option ? nil : option = op_last
+    option.id ? nil : option = op_last
     v = Vehicle.find(num)
     v.options << option
     n % 50 == 0 ? (puts "decking our vehicles with options...") : nil
