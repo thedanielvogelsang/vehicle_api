@@ -21,12 +21,12 @@ api resource list (all RESTful routes for each resource are available for CRUD):
   * DELETE /api/v1/makes/:id
 
   ```shell
-  makes options: {
-    company: string,
-    company_desc: string,
+  makes options:
+    company: string, must be unique
+    company_desc: string, must be unique
     company_motto: string,
     ceo_statement: string
-  }
+
   ```
 
 ### Models
@@ -37,11 +37,11 @@ api resource list (all RESTful routes for each resource are available for CRUD):
   * DELETE /api/v1/models/:id
 
   ```shell
-  makes options: {
-    company: string,
+  models options: 
+    company: string, must be unique
     make_id: integer, existing make,
     year_id: integer, existing year
-  }
+
   ```
 
 ### Vehicles
