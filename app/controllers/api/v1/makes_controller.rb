@@ -1,22 +1,50 @@
 class Api::V1::MakesController < ApplicationController
+  protect_from_forgery with: :null_session
+
   def index
     render json: Make.all
   end
 
   def show
-    render json: Make.find(params['id'])
+    make = Make.exists?(params['id'])
+    if make
+      render json: Make.find(params['id'])
+    else
+      render status: 404
+    end
   end
 
   def create
-    render json: Make.all
-
+    make = Make.new(safe_params)
+    if make.save
+      render json: Make.last, status: 201
+    elsif
+      render :json => {:error => "bad-params"}.to_json, :status => 400
+    end
   end
 
   def update
-    render json: Make.all
+    make = Make.find(params[:id])
+    if make && !safe_params.to_h.empty? && make.update(safe_params)
+      make.update(safe_params)
+      render json: Make.last
+    else
+      render :json => {:error => 'bad-params'}.to_json, :status => 400
+    end
   end
 
   def destroy
-    render json: Make.all
+    make = Make.find(params["id"])
+    if make
+      Make.destroy(params["id"])
+      render :json => {:message => 'make deleted'}.to_json, :status => 204
+    else
+      render :json => {:message => 'model not found'}.to_json, :status => 400
+    end
   end
+
+  private
+    def safe_params
+      params.permit(:company, :company_desc, :company_motto, :ceo_statement)
+    end
 end
