@@ -9,6 +9,8 @@
 
 Data is populated by first downloading a schema and dataset from a fellow github user kind enough to supply it, as well as several different datasets from the Faker gem -- then this vehicle_api functions as the webserver spitting out json responses to restful requests.
 
+Makes are linked to models, and vehicles inherit from model and make; Vehicles also can be 'purchased' with options, or options added on later. Visit the API endpoints (below) after setting up the project (bottom of README) for further explication.
+
 ## Endpoints
 
 api resource list (all RESTful routes for each resource are available for CRUD):
@@ -27,6 +29,9 @@ api resource list (all RESTful routes for each resource are available for CRUD):
     company_motto: string,
     ceo_statement: string
 
+  example:
+    GET https://localhost:3000/api/v1/makes
+
   ```
 
 ### Models
@@ -42,12 +47,47 @@ api resource list (all RESTful routes for each resource are available for CRUD):
     make_id: integer, existing make,
     year_id: integer, existing year
 
+    example:
+      patch https://localhost:3000/api/v1/models/303?company=New+Company+Name
+
   ```
 
 ### Vehicles
+  * GET /api/v1/vehicles
+  * GET /api/v1/vehicles/:id
+  * POST /api/v1/vehicles?\<options\>
+  * PUT/PATCH /api/v1/vehicle/:id?\<options\>
+  * DELETE /api/v1/vehicles/:id
+
+  ```shell
+  vehicle options:
+    vin: string, must be unique
+    make_id: integer, existing make,
+    model_id: integer, existing year
+    options_nums: array, integers, existing options
+
+  example:
+    post https://localhost:3000/api/v1/vehicles/3?vin=NewVin&options_nums=1,2,3
+  ```
 
 ### Options
+  * GET /api/v1/options
+  * GET /api/v1/options/:id
+  * POST /api/v1/options?\<options\>
+  * PUT/PATCH /api/v1/options/:id?\<options\>
+  * DELETE /api/v1/options/:id
 
+  ```shell
+  options options:
+    name: string, must be unique,
+    description: string, must be unique,
+    price: integer,
+    promotion_code: integer,
+    model_id: integer, existing model
+
+  example:
+    DELETE https://localhost:3000/api/v1/options/44
+  ```
 
 * Ruby version 2.4.1p111
 
@@ -97,7 +137,7 @@ api resource list (all RESTful routes for each resource are available for CRUD):
   ```shell
     rails s
   ```
-  and visit "http://localhost:3000/api/v1/\<resource\>" to see each json response,
+  and visit "http://localhost:3000/api/v1\<resource\>" to see each json response,
   **use Postman to test the create, update, and delete functionality.**
 
 
