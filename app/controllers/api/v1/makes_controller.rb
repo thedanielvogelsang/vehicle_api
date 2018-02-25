@@ -34,8 +34,13 @@ class Api::V1::MakesController < ApplicationController
   end
 
   def destroy
-    Make.destroy(params["id"])
-    render :json => {:message => 'make deleted'}.to_json, :status => 204
+    make = Make.find(params["id"])
+    if make
+      Make.destroy(params["id"])
+      render :json => {:message => 'make deleted'}.to_json, :status => 204
+    else
+      render :json => {:message => 'model not found'}.to_json, :status => 400
+    end
   end
 
   private

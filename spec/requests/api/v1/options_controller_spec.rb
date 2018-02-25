@@ -61,4 +61,32 @@ describe 'options_api' do
     expect(body).to eq('bad-params')
     expect(Option.count).to eq(3)
   end
+  it 'will update a put/patch with proper params' do
+    option = Option.last
+    patch "/api/v1/options/#{option.id}?description=Something+new+from+marketing"
+
+    new_option = Option.last
+    expect(option.id).to eq(new_option.id)
+    expect(option.description).to_not eq(new_option.description)
+    expect(new_option.description).to eq('Something new from marketing')
+  end
+  it 'will reject a put/patch with improper params' do
+    expect(Option.count).to eq(3)
+    id = Option.last.id
+    put "/api/v1/options/#{id}?make_id=abc123&vin=Ab9kl7"
+
+    expect(response).to_not be_success
+    expect(response.status).to eq(400)
+    body = JSON.parse(response.body)['error']
+    expect(body).to eq('bad-params')
+    expect(Option.count).to eq(3)
+  end
+  it 'will delete an option with an id' do
+    option = Option.last
+    id = option.id
+    delete "/api/v1/options/#{id}"
+
+    expect(response).to be_success
+    expect(response.status).to eq(204)
+  end
 end

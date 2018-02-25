@@ -1,4 +1,6 @@
 class Api::V1::OptionsController < ApplicationController
+  protect_from_forgery with: :null_session
+
   def index
     render json: Option.order("RAND()").limit(100)
   end
@@ -23,7 +25,7 @@ class Api::V1::OptionsController < ApplicationController
 
   def update
     option = Option.find(params[:id])
-    if option && !safe_params.to_h.empty? && options.update(safe_params)
+    if option && !safe_params.to_h.empty? && option.update(safe_params)
       option.update(safe_params)
       render json: Option.last
     else
@@ -32,7 +34,13 @@ class Api::V1::OptionsController < ApplicationController
   end
 
   def destroy
-    render json: Option.all
+    option = Option.find(params["id"])
+    if option
+      Option.destroy(option.id)
+      render :json => {:message => 'model deleted'}.to_json, :status => 204
+    else
+      render :json => {:message => 'model not found'}.to_json, :status => 400
+    end
   end
 
   private

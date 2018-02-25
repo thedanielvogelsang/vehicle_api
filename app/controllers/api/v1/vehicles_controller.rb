@@ -36,8 +36,13 @@ class Api::V1::VehiclesController < ApplicationController
   end
 
   def destroy
-    Vehicle.destroy(params[:id])
-    render :json => {:message => 'model deleted'}.to_json, :status => 204
+    vehicle = Vehicle.find(params[:id])
+    if vehicle
+      Vehicle.destroy(params[:id])
+      render :json => {:message => 'model deleted'}.to_json, :status => 204
+    else
+      render :json => {:message => 'model not found'}.to_json, :status => 400
+    end
   end
 
   private
