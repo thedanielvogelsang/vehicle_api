@@ -1,4 +1,4 @@
-``# README
+# README
 
 * This project, built over the course of 2 days, is a RESTful json-returning public API for a fictional auto dealership, which has Create, Read, Update and Destroy capability for 4 associated resources:
 
