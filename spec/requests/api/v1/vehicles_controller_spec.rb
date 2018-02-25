@@ -33,7 +33,7 @@ describe 'vehicles_api' do
 
   end
 
-  xit 'can create a vehicle' do
+  it 'can create a vehicle' do
     expect(Vehicle.count).to eq(3)
     mId = Model.last.id
     maId = Make.last.id
@@ -48,7 +48,7 @@ describe 'vehicles_api' do
     expect(vehicle['model']).to eq('Civic')
     expect(vehicle['vin']).to eq('Ab9kl7')
   end
-  xit 'will reject a post with improper params' do
+  it 'will reject a post with improper params' do
     expect(Vehicle.count).to eq(3)
     mId = Model.last.id
     post "/api/v1/vehicles?model_id=#{mId}&make_id=abc123&vin=Ab9kl7"
