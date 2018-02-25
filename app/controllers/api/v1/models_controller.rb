@@ -7,9 +7,16 @@ class Api::V1::ModelsController < ApplicationController
     render json: Model.find(params[:id])
   end
 
+
   def create
-    render json: Model.all
+    model = Model.new(safe_params)
+    if model.save
+      render json: Model.last, status: 201
+    elsif
+      render :json => {:error => "bad-params"}.to_json, :status => 400
+    end
   end
+
 
   def update
     render json: Model.all
@@ -18,4 +25,9 @@ class Api::V1::ModelsController < ApplicationController
   def destroy
     render json: Model.all
   end
+
+  private
+    def safe_params
+      params.permit(:make_id, :name, :year_id)
+    end
 end
