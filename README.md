@@ -61,7 +61,7 @@ Makes are linked to models, and vehicles inherit from model and make; Vehicles a
   ```shell
     rails s
   ```
-  and visit "http://localhost:3000/api/v1\<resource\>" to see each json response,
+  and visit "http://localhost:3000/api/v1/ \<resource\>" to see each json response,
   **use Postman to test the create, update, and delete functionality.**
 
 ====== ****** ====== ****** ====== ****** ======
