@@ -75,4 +75,11 @@ describe 'makes_api' do
     error = JSON.parse(response.body)
     expect(error["error"]).to eq('bad-params')
   end
+  it 'will delete a make with  id' do
+    make = Make.last
+    id = make.id
+    delete "/api/v1/makes/#{id}"
+    expect(response).to be_success
+    expect(response.status).to eq(204)
+  end
 end
