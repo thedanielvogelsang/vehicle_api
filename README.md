@@ -1,26 +1,24 @@
-# README
+``# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* This project, built over the course of 2 days, is a RESTful json-returning public API for a fictional auto dealership, which has Create, Read, Update and Destroy capability for 4 associated resources:
 
-Things you may want to cover:
+* VEHICLES
+* MAKES
+* MODELS
+* OPTIONS
 
-* Ruby version
+Data is populated by first downloading a schema and dataset from a fellow github user kind enough to supply it, as well as several different datasets from the Faker gem -- then this vehicle_api functions as the webserver spitting out json responses to restful requests.
+
+* Ruby version 2.4.1p111
 
 * System dependencies
-  mysql (installation instructions here[])
-  ruby (installation instructions here[])
-  rails (installation instructions here[])
+  complete instructions here[https://gorails.com/setup/osx/10.13-high-sierra]
 
-* Configuration
+    mysql (installation instructions here[https://dev.mysql.com/doc/refman/5.5/en/osx-installation-pkg.html])
 
-* Database creation
+    ruby (installation instructions here[https://www.ruby-lang.org/en/documentation/installation/])
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+    rails (installation instructions here[http://blog.teamtreehouse.com/install-rails-5-mac])
 
 * Deployment instructions
   clone repo and cd into it
