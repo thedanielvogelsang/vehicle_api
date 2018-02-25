@@ -4,7 +4,12 @@ class Api::V1::OptionsController < ApplicationController
   end
 
   def show
-    render json: Option.find(params["id"])
+    option = Option.exists?(params["id"])
+    if option
+      render json: Option.find(params["id"])
+    else
+      render status: 404
+    end
   end
 
   def create

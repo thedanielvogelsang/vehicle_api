@@ -6,7 +6,12 @@ class Api::V1::MakesController < ApplicationController
   end
 
   def show
-    render json: Make.find(params['id'])
+    make = Make.exists?(params['id'])
+    if make
+      render json: Make.find(params['id'])
+    else
+      render status: 404
+    end
   end
 
   def create

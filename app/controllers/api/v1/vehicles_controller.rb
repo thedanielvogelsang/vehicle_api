@@ -6,7 +6,12 @@ class Api::V1::VehiclesController < ApplicationController
   end
 
   def show
-    render json: Vehicle.find(params[:id])
+    vehicle = Vehicle.exists?(params[:id])
+    if vehicle
+      render json: Vehicle.find(params[:id])
+    else 
+      render status: 404
+    end
   end
 
   def create
@@ -14,7 +19,7 @@ class Api::V1::VehiclesController < ApplicationController
     if vehicle.save
       add_options
       render json: Vehicle.last, status: 201
-    elsif
+    else
       render :json => {:error => 'bad-params'}.to_json, :status => 400
     end
   end
@@ -23,14 +28,15 @@ class Api::V1::VehiclesController < ApplicationController
     vehicle = Vehicle.find(params[:id].to_i)
     if vehicle.update(safe_params)
       add_options
-      render json: Vehicle.last, status: 201
-    elsif
+      render json: Vehicle.last
+    else
       render :json => {:error => 'bad-params'}.to_json, :status => 400
     end
   end
 
   def destroy
-    render json: Vehicle.all
+    Vehicle.destroy(params[:id])
+    render :json => {:message => 'model deleted'}.to_json, :status => 204
   end
 
   private

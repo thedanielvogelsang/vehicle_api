@@ -19,7 +19,6 @@ describe 'vehicles_api' do
     options = JSON.parse(response.body)
     expect(options.count).to eq(3)
   end
-
   it 'returns a make based on its id' do
     vehicle_1 = Vehicle.first
     id = vehicle_1.id
@@ -33,7 +32,6 @@ describe 'vehicles_api' do
     expect(vehicle["vin"]).to eq(vin)
 
   end
-
   it 'can create a vehicle' do
     expect(Vehicle.count).to eq(3)
     mId = Model.last.id
@@ -89,7 +87,7 @@ describe 'vehicles_api' do
     put "/api/v1/vehicles/#{vehicle.id}?model_id=#{newMid}&vin=SOMETHING%20NEW"
 
     expect(response).to be_success
-    expect(response.status).to eq(201)
+    expect(response.status).to eq(200)
     expect(Vehicle.count).to eq(3)
 
     vehicle = JSON.parse(response.body)
@@ -110,9 +108,8 @@ describe 'vehicles_api' do
     put "/api/v1/vehicles/#{vehicle.id}?model_id=#{newMid}&options_nums=#{option.id}"
 
     expect(response).to be_success
-    expect(response.status).to eq(201)
+    expect(response.status).to eq(200)
     expect(Vehicle.count).to eq(3)
-
     vehicle = JSON.parse(response.body)
     expect(vehicle['make']).to eq('Honda')
     expect(vehicle['model']).to eq('Scion')
@@ -122,13 +119,30 @@ describe 'vehicles_api' do
   end
   it 'will reject an update put/patch with improper params' do
     expect(Vehicle.count).to eq(3)
+    vehicle = Vehicle.last
     mId = Model.last.id
-    post "/api/v1/vehicles?model_id=#{mId}&make_id=abc123&vin=Ab9kl7"
+    put "/api/v1/vehicles/#{vehicle.id}?model_id=#{mId}&make_id=abc123&vin=Ab9kl7"
 
     expect(response).to_not be_success
     expect(response.status).to eq(400)
     body = JSON.parse(response.body)['error']
     expect(body).to eq('bad-params')
     expect(Vehicle.count).to eq(3)
+  end
+  it 'can delete a vehicle' do
+    expect(Vehicle.count).to eq(3)
+    vehicle_del = Vehicle.last.id
+    # get "/api/v1/vehicles/#{vehicle_del}"
+    # expect(response).to be_success
+    delete "/api/v1/vehicles/#{vehicle_del}"
+
+    expect(response).to be_success
+    expect(response.status).to eq(204)
+    vehicle = Vehicle.last.id
+
+    expect(vehicle_del).to_not eq(vehicle)
+
+    get "/api/v1/vehicles/#{vehicle_del}"
+    expect(response).to_not be_success
   end
 end

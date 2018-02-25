@@ -4,7 +4,12 @@ class Api::V1::ModelsController < ApplicationController
   end
 
   def show
-    render json: Model.find(params[:id])
+    model = Model.exists?(params[:id])
+    if model
+      render json: Model.find(params[:id])
+    else
+      render status: 404
+    end
   end
 
 
@@ -12,18 +17,24 @@ class Api::V1::ModelsController < ApplicationController
     model = Model.new(safe_params)
     if model.save
       render json: Model.last, status: 201
-    elsif
+    else
       render :json => {:error => "bad-params"}.to_json, :status => 400
     end
   end
 
 
   def update
-    render json: Model.all
+    model = Model.find(params[:id])
+    if model.update(safe_params)
+      render json: Model.last
+    else
+      render :json => {:error => 'bad-params'}.to_json, :status => 400
+    end
   end
 
   def destroy
-    render json: Model.all
+    Model.destroy(params[:id])
+    render :json => {:message => 'model deleted'}.to_json, :status => 204
   end
 
   private
