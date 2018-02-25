@@ -41,7 +41,7 @@ Things you may want to cover:
     username: dvog_temp
     password: Blink3r!
   ```
-  using the above credentials for mysql access, open up a connection to mysql and source their data:
+  using the above credentials for mysql access, open up a connection to mysql and source their data (once logged in, you can run 'SHOW DATABASES;' to confirm vehicle_api_development has been successfully created):
 
   cd into their repo after cloning, then run:
   ```shell
@@ -51,7 +51,7 @@ Things you may want to cover:
     source schema.sql;
     source data.sql;
   ```
-  then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
+#### then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
 
   ===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== =====
 
@@ -72,7 +72,8 @@ Things you may want to cover:
 
     * options
 
-  ===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== =====
+====== ======    ******   ====== =======    ******    ====== ======
+
 
   **for testing, run**
   ```shell
