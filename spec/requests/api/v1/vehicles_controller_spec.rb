@@ -54,6 +54,8 @@ describe 'vehicles_api' do
 
     expect(response).to_not be_success
     expect(response.status).to eq(400)
+    body = JSON.parse(response.body)['error']
+    expect(body).to eq('bad-params')
     expect(Vehicle.count).to eq(3)
   end
 end

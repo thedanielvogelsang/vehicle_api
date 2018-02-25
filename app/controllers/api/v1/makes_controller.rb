@@ -1,4 +1,6 @@
 class Api::V1::MakesController < ApplicationController
+  protect_from_forgery with: :null_session
+
   def index
     render json: Make.all
   end
@@ -8,8 +10,12 @@ class Api::V1::MakesController < ApplicationController
   end
 
   def create
-    render json: Make.all
-
+    make = Make.new(safe_params)
+    if make.save
+      render json: Make.last, status: 201
+    elsif
+      render :json => {:error => "bad-params"}.to_json, :status => 400
+    end
   end
 
   def update
@@ -19,4 +25,9 @@ class Api::V1::MakesController < ApplicationController
   def destroy
     render json: Make.all
   end
+
+  private
+    def safe_params
+      params.permit(:company, :company_desc, :company_motto, :ceo_statement)
+    end
 end

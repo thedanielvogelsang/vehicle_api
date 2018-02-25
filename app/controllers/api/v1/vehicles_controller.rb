@@ -14,7 +14,7 @@ class Api::V1::VehiclesController < ApplicationController
     if vehicle.save
       render json: Vehicle.last, status: 201
     elsif
-      render :status => 400
+      render :json => {:error => 'bad-params'}.to_json, :status => 400
     end
   end
 
