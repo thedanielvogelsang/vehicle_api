@@ -25,7 +25,9 @@ class Api::V1::ModelsController < ApplicationController
 
   def update
     model = Model.find(params[:id])
-    if model.update(safe_params)
+
+    if model && !safe_params.to_h.empty? && model.update(safe_params)
+      model.update(safe_params)
       render json: Model.last
     else
       render :json => {:error => 'bad-params'}.to_json, :status => 400

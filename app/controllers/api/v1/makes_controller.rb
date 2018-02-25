@@ -25,7 +25,7 @@ class Api::V1::MakesController < ApplicationController
 
   def update
     make = Make.find(params[:id])
-    if make && !safe_params.to_h.empty?
+    if make && !safe_params.to_h.empty? && make.update(safe_params)
       make.update(safe_params)
       render json: Make.last
     else

@@ -9,7 +9,7 @@ class Api::V1::VehiclesController < ApplicationController
     vehicle = Vehicle.exists?(params[:id])
     if vehicle
       render json: Vehicle.find(params[:id])
-    else 
+    else
       render status: 404
     end
   end
@@ -25,8 +25,9 @@ class Api::V1::VehiclesController < ApplicationController
   end
 
   def update
-    vehicle = Vehicle.find(params[:id].to_i)
-    if vehicle.update(safe_params)
+    vehicle = Vehicle.find(params[:id])
+    if vehicle && !safe_params.to_h.empty? && vehicle.update(safe_params)
+      vehicle.update(safe_params)
       add_options
       render json: Vehicle.last
     else

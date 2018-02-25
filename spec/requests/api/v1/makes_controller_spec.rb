@@ -7,7 +7,7 @@ describe 'makes_api' do
       Make.create(company: "Company#{i}", company_desc: "company description #{i}")
     end
   end
-  xit 'returns a list of makes' do
+  it 'returns a list of makes' do
     get '/api/v1/makes'
 
     expect(response).to be_success
@@ -15,7 +15,7 @@ describe 'makes_api' do
     expect(makes.count).to eq(3)
   end
 
-  xit 'returns a make based on its id' do
+  it 'returns a make based on its id' do
     make = Make.last
     id = make.id
     company = make.company
@@ -27,7 +27,7 @@ describe 'makes_api' do
     expect(make["id"]).to eq(id)
     expect(make["company"]).to eq(company)
   end
-  xit 'can create a make' do
+  it 'can create a make' do
     expect(Make.count).to eq(3)
     post "/api/v1/makes?company=NewCompany&company_desc=lengthy_description&company_motto=We+believe+in+you&ceo_statement=I%20love%20my%20job"
 
@@ -40,7 +40,7 @@ describe 'makes_api' do
     expect(make['company_motto']).to eq('We believe in you')
     expect(make['ceo_statement']).to eq('I love my job')
   end
-  xit 'will reject a post with improper params' do
+  it 'will reject a post with improper params' do
     expect(Make.count).to eq(3)
     post "/api/v1/makes?company=NewCompany"
 

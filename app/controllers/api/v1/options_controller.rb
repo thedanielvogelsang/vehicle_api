@@ -22,7 +22,13 @@ class Api::V1::OptionsController < ApplicationController
   end
 
   def update
-    render json: Option.all
+    option = Option.find(params[:id])
+    if option && !safe_params.to_h.empty? && options.update(safe_params)
+      option.update(safe_params)
+      render json: Option.last
+    else
+      render :json => {"error" => "bad-params"}, status: 400
+    end
   end
 
   def destroy
