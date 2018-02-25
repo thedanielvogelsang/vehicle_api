@@ -8,7 +8,12 @@ class Api::V1::OptionsController < ApplicationController
   end
 
   def create
-    render json: Option.all
+    option = Option.new(safe_params)
+    if option.save
+      render json: Option.last, status: 201
+    elsif
+      render :json => {:error => "bad-params"}.to_json, :status => 400
+    end
   end
 
   def update
@@ -18,4 +23,9 @@ class Api::V1::OptionsController < ApplicationController
   def destroy
     render json: Option.all
   end
+
+  private
+   def safe_params
+      params.permit(:name, :description, :price, :promotion_code, :model_id)
+   end
 end
