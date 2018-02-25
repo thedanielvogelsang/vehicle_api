@@ -39,7 +39,7 @@ Data is populated by first downloading a schema and dataset from a fellow github
     username: dvog_temp
     password: Blink3r!
   ```
-  using the above credentials for mysql access, open up a connection to mysql and source their data:
+  using the above credentials for mysql access, open up a connection to mysql and source their data (once logged in, you can run 'SHOW DATABASES;' to confirm vehicle_api_development has been successfully created):
 
   cd into their repo after cloning, then run:
   ```shell
@@ -49,7 +49,7 @@ Data is populated by first downloading a schema and dataset from a fellow github
     source schema.sql;
     source data.sql;
   ```
-  then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
+#### then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
 
   ===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== =====
 
@@ -70,7 +70,8 @@ Data is populated by first downloading a schema and dataset from a fellow github
 
     * options
 
-  ===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== =====
+====== ======    ******   ====== =======    ******    ====== ======
+
 
   **for testing, run**
   ```shell
