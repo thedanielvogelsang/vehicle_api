@@ -57,7 +57,7 @@ Makes are linked to models, and vehicles inherit from model and make; Vehicles a
 
 ===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== ===== ===== ===== =====
 
-  **to see the api online, run**
+  **TO SEE THE API ONLINE, run**
   ```shell
     rails s
   ```
