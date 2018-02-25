@@ -55,7 +55,7 @@ Makes are linked to models, and vehicles inherit from model and make; Vehicles a
 #### then, in our vehicle_api repo, import your data using `rake import` and you're ready to go!
 
 
-===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== =====
+===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== ===== ===== ===== =====
 
   **to see the api online, run**
   ```shell
@@ -64,7 +64,7 @@ Makes are linked to models, and vehicles inherit from model and make; Vehicles a
   and visit "http://localhost:3000/api/v1\<resource\>" to see each json response,
   **use Postman to test the create, update, and delete functionality.**
 
-====== ======    ******   ====== =======    ******    ====== ======
+====== ****** ====== ****** ====== ****** ======
 
 
   **for testing, run**
@@ -73,7 +73,7 @@ Makes are linked to models, and vehicles inherit from model and make; Vehicles a
     rspec
   ```
 
-===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== =====
+===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== ===== ===== ===== =====
 
 ## Endpoints
 
