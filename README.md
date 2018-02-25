@@ -9,6 +9,31 @@
 
 Data is populated by first downloading a schema and dataset from a fellow github user kind enough to supply it, as well as several different datasets from the Faker gem -- then this vehicle_api functions as the webserver spitting out json responses to restful requests.
 
+## Endpoints
+
+api resource list (all RESTful routes for each resource are available for CRUD):
+
+### Makes
+  * GET /api/v1/makes
+  * GET /api/v1/makes/:id
+  * POST /api/v1/makes?<options>
+  * PUT/PATCH /api/v1/makes/:id?<options>
+  * DELETE /api/v1/makes/:id
+
+* ```makes options: {
+    company: string,
+    company_desc: string,
+    company_motto: string,
+    ceo_statement: string
+  }```
+  
+### Models
+
+### Vehicles
+
+### Options
+
+
 * Ruby version 2.4.1p111
 
 * System dependencies
@@ -60,15 +85,6 @@ Data is populated by first downloading a schema and dataset from a fellow github
   and visit "http://localhost:3000/api/v1/\<resource\>" to see each json response,
   **use Postman to test the create, update, and delete functionality.**
 
-  api resource list (all RESTful routes for each resource are available for CRUD):
-
-    * makes
-
-    * models
-
-    * vehicles
-
-    * options
 
 ====== ======    ******   ====== =======    ******    ====== ======
 
