@@ -8,6 +8,7 @@ describe 'vehicles_api' do
     mod = Model.create(name: "Civic", year_id: y.id, make_id: m.id)
     3.times do |i|
       Vehicle.create(make_id: m.id, model_id: mod.id, vin: i)
+      Option.create(model_id: mod.id, name: "Cool new option #{i + 1}", description: 'desc', price: 100)
     end
   end
   it 'returns a list of makes' do
@@ -32,7 +33,7 @@ describe 'vehicles_api' do
 
   end
 
-  it 'can create a vehicle' do
+  xit 'can create a vehicle' do
     expect(Vehicle.count).to eq(3)
     mId = Model.last.id
     maId = Make.last.id
@@ -47,7 +48,7 @@ describe 'vehicles_api' do
     expect(vehicle['model']).to eq('Civic')
     expect(vehicle['vin']).to eq('Ab9kl7')
   end
-  it 'will reject a post with improper params' do
+  xit 'will reject a post with improper params' do
     expect(Vehicle.count).to eq(3)
     mId = Model.last.id
     post "/api/v1/vehicles?model_id=#{mId}&make_id=abc123&vin=Ab9kl7"
@@ -57,5 +58,23 @@ describe 'vehicles_api' do
     body = JSON.parse(response.body)['error']
     expect(body).to eq('bad-params')
     expect(Vehicle.count).to eq(3)
+  end
+  it 'can create a vehicle with options' do
+    expect(Vehicle.count).to eq(3)
+    mId = Model.last.id
+    maId = Make.last.id
+    option1 = Option.last
+    option2 = Option.first
+
+    post "/api/v1/vehicles?model_id=#{mId}&make_id=#{maId}&vin=Ab9kl7&options_nums=#{option1.id},#{option2.id}"
+    expect(response).to be_success
+    expect(response.status).to eq(201)
+    expect(Vehicle.count).to eq(4)
+
+    vehicle = JSON.parse(response.body)
+    expect(vehicle['make']).to eq('Honda')
+    expect(vehicle['model']).to eq('Civic')
+    expect(vehicle['vin']).to eq('Ab9kl7')
+    expect(vehicle['options']).to eq(["Cool new option 3", "Cool new option 1"])
   end
 end
