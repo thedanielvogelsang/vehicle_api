@@ -32,4 +32,18 @@ describe 'vehicles_api' do
 
   end
 
+  it 'can create a vehicle' do
+    expect(Vehicle.count).to eq(3)
+    mId = Model.last.id
+    maId = Make.last.id
+    post "/api/v1/vehicles?model_id=#{mId}&make_id=#{maId}&vin=Ab9kl7"
+
+    expect(response).to be_success
+    expect(Vehicle.count).to eq(4)
+
+    vehicle = JSON.parse(response.body)
+    expect(vehicle['make']).to eq('Honda')
+    expect(vehicle['model']).to eq('Civic')
+    expect(vehicle['vin']).to eq('Ab9kl7')
+  end
 end
