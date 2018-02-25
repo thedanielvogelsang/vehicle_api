@@ -5,6 +5,7 @@ describe 'vehicles_api' do
   before(:each) do
     m = Make.create(company: "Honda", company_desc: "company description")
     y = Year.create(year: 1995)
+    Model.create(name: "Scion", year_id: y.id, make_id: m.id)
     mod = Model.create(name: "Civic", year_id: y.id, make_id: m.id)
     3.times do |i|
       Vehicle.create(make_id: m.id, model_id: mod.id, vin: i)
@@ -76,5 +77,58 @@ describe 'vehicles_api' do
     expect(vehicle['model']).to eq('Civic')
     expect(vehicle['vin']).to eq('Ab9kl7')
     expect(vehicle['options']).to eq(["Cool new option 3", "Cool new option 1"])
+  end
+  it 'can update/edit a vehicle' do
+    vehicle = Vehicle.last
+    mId = Model.last.id
+    newMid = Model.first.id
+    maId = Make.last.id
+    expect(vehicle.make.id).to eq(maId)
+    expect(vehicle.model.name).to eq('Civic')
+    expect(vehicle.vin).to eq("2")
+    put "/api/v1/vehicles/#{vehicle.id}?model_id=#{newMid}&vin=SOMETHING%20NEW"
+
+    expect(response).to be_success
+    expect(response.status).to eq(201)
+    expect(Vehicle.count).to eq(3)
+
+    vehicle = JSON.parse(response.body)
+    expect(vehicle['make']).to eq('Honda')
+    expect(vehicle['model']).to eq('Scion')
+    expect(vehicle['vin']).to eq('SOMETHING NEW')
+  end
+  it 'can update/edit a vehicle and add options' do
+    vehicle = Vehicle.last
+    mId = Model.last.id
+    newMid = Model.first.id
+    maId = Make.last.id
+    option = Option.last
+    expect(vehicle.make.id).to eq(maId)
+    expect(vehicle.model.name).to eq('Civic')
+    expect(vehicle.vin).to eq("2")
+    expect(vehicle.options.count).to eq(0)
+    put "/api/v1/vehicles/#{vehicle.id}?model_id=#{newMid}&options_nums=#{option.id}"
+
+    expect(response).to be_success
+    expect(response.status).to eq(201)
+    expect(Vehicle.count).to eq(3)
+
+    vehicle = JSON.parse(response.body)
+    expect(vehicle['make']).to eq('Honda')
+    expect(vehicle['model']).to eq('Scion')
+    expect(vehicle["options"].count).to eq(1)
+    expect(vehicle["options"][0]).to eq("Cool new option 3")
+
+  end
+  it 'will reject an update put/patch with improper params' do
+    expect(Vehicle.count).to eq(3)
+    mId = Model.last.id
+    post "/api/v1/vehicles?model_id=#{mId}&make_id=abc123&vin=Ab9kl7"
+
+    expect(response).to_not be_success
+    expect(response.status).to eq(400)
+    body = JSON.parse(response.body)['error']
+    expect(body).to eq('bad-params')
+    expect(Vehicle.count).to eq(3)
   end
 end

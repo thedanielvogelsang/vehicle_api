@@ -20,7 +20,13 @@ class Api::V1::VehiclesController < ApplicationController
   end
 
   def update
-    render json: Vehicle.all
+    vehicle = Vehicle.find(params[:id].to_i)
+    if vehicle.update(safe_params)
+      add_options
+      render json: Vehicle.last, status: 201
+    elsif
+      render :json => {:error => 'bad-params'}.to_json, :status => 400
+    end
   end
 
   def destroy
