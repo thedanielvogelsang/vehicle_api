@@ -24,11 +24,18 @@ class Api::V1::MakesController < ApplicationController
   end
 
   def update
-    render json: Make.all
+    make = Make.find(params[:id])
+    if make && !safe_params.to_h.empty?
+      make.update(safe_params)
+      render json: Make.last
+    else
+      render :json => {:error => 'bad-params'}.to_json, :status => 400
+    end
   end
 
   def destroy
-    render json: Make.all
+    Make.destroy(params["id"])
+    render :json => {:message => 'make deleted'}.to_json, :status => 204
   end
 
   private
