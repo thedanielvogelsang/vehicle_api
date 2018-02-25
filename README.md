@@ -32,12 +32,12 @@ api resource list (all RESTful routes for each resource are available for CRUD):
 ### Models
   * GET /api/v1/models
   * GET /api/v1/models/:id
-  * POST /api/v1/models?<options>
-  * PUT/PATCH /api/v1/models/:id?<options>
+  * POST /api/v1/models?\<options\>
+  * PUT/PATCH /api/v1/models/:id?\<options\>
   * DELETE /api/v1/models/:id
 
   ```shell
-  models options: 
+  models options:
     company: string, must be unique
     make_id: integer, existing make,
     year_id: integer, existing year
