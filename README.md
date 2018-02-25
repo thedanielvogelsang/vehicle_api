@@ -20,13 +20,14 @@ api resource list (all RESTful routes for each resource are available for CRUD):
   * PUT/PATCH /api/v1/makes/:id?<options>
   * DELETE /api/v1/makes/:id
 
-* ```makes options: {
+* ```shell
+  makes options: {
     company: string,
     company_desc: string,
     company_motto: string,
     ceo_statement: string
   }```
-  
+
 ### Models
 
 ### Vehicles
