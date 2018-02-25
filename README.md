@@ -20,7 +20,7 @@ api resource list (all RESTful routes for each resource are available for CRUD):
   * PUT/PATCH /api/v1/makes/:id?<options>
   * DELETE /api/v1/makes/:id
 
-  * ```shell
+  ```shell
   makes options: {
     company: string,
     company_desc: string,
@@ -36,7 +36,7 @@ api resource list (all RESTful routes for each resource are available for CRUD):
   * PUT/PATCH /api/v1/models/:id?<options>
   * DELETE /api/v1/models/:id
 
-  * ```shell
+  ```shell
   makes options: {
     company: string,
     make_id: integer, existing make,
