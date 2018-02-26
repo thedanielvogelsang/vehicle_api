@@ -29,16 +29,23 @@ Makes are linked to models, and vehicles inherit from model and make; Vehicles a
     rails (installation instructions here[http://blog.teamtreehouse.com/install-rails-5-mac])
 
 * Additional Gems
+
   gem 'mysql2', '0.3.18'
+
   gem 'active_model_serializers', '0.10.0'
+
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
   gem 'shoulda-matchers'
+
   gem 'database_cleaner'
+
   gem 'rspec-rails'
 
 
 ## Deployment instructions
   clone repo and cd into it
+
   run
   ```shell
     gem install bundle
@@ -111,7 +118,7 @@ api resource list (all RESTful routes for each resource are available for CRUD):
     ceo_statement: string
 
   example:
-    GET https://localhost:3000/api/v1/makes
+    GET http://localhost:3000/api/v1/makes
 
   ```
 
@@ -129,7 +136,7 @@ api resource list (all RESTful routes for each resource are available for CRUD):
     year_id: integer, existing year
 
     example:
-      patch https://localhost:3000/api/v1/models/303?company=New+Company+Name
+      patch http://localhost:3000/api/v1/models/303?company=New+Company+Name
 
   ```
 
@@ -148,7 +155,7 @@ api resource list (all RESTful routes for each resource are available for CRUD):
     options_nums: array, integers, existing options
 
   example:
-    post https://localhost:3000/api/v1/vehicles/3?vin=NewVin&options_nums=1,2,3
+    post http://localhost:3000/api/v1/vehicles?vin=NewVin&options_nums=1,2,3
   ```
 
 ### Options
@@ -167,5 +174,5 @@ api resource list (all RESTful routes for each resource are available for CRUD):
     model_id: integer, existing model
 
   example:
-    DELETE https://localhost:3000/api/v1/options/44
+    DELETE http://localhost:3000/api/v1/options/44
   ```
