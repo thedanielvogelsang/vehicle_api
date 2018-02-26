@@ -15,7 +15,7 @@ Responses have been cached using Rails cache.
 
 Data is populated by first downloading a schema and dataset from a fellow github user kind enough to supply it, as well as several different datasets from the Faker gem -- then this vehicle_api functions as the webserver spitting out json responses to restful requests.
 
-Makes are linked to models, and vehicles inherit from model and make; Vehicles also can be 'purchased' with options, or options added on later. Visit the API endpoints (bottom of README) after setting up the project (below) for further explication.
+Makes are linked to models, and vehicles inherit from model and make; Vehicles also can be 'purchased' with options, or options added on later. Visit the API endpoints (bottom of README or at http://localhost:3000) after setting up the project (below) for further explication.
 
 * Ruby version 2.4.1p111
 
