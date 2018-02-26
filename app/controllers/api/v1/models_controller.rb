@@ -1,4 +1,6 @@
 class Api::V1::ModelsController < ApplicationController
+  protect_from_forgery with: :null_session
+  
   def index
     render json: Model.all
   end

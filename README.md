@@ -111,7 +111,7 @@ api resource list (all RESTful routes for each resource are available for CRUD):
     ceo_statement: string
 
   example:
-    GET https://localhost:3000/api/v1/makes
+    GET http://localhost:3000/api/v1/makes
 
   ```
 
@@ -129,7 +129,7 @@ api resource list (all RESTful routes for each resource are available for CRUD):
     year_id: integer, existing year
 
     example:
-      patch https://localhost:3000/api/v1/models/303?company=New+Company+Name
+      patch http://localhost:3000/api/v1/models/303?company=New+Company+Name
 
   ```
 
@@ -148,7 +148,7 @@ api resource list (all RESTful routes for each resource are available for CRUD):
     options_nums: array, integers, existing options
 
   example:
-    post https://localhost:3000/api/v1/vehicles/3?vin=NewVin&options_nums=1,2,3
+    post http://localhost:3000/api/v1/vehicles?vin=NewVin&options_nums=1,2,3
   ```
 
 ### Options
@@ -167,5 +167,5 @@ api resource list (all RESTful routes for each resource are available for CRUD):
     model_id: integer, existing model
 
   example:
-    DELETE https://localhost:3000/api/v1/options/44
+    DELETE http://localhost:3000/api/v1/options/44
   ```
