@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Blinker API Test</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+  </head>
+  <body>
+    <h1>Blink3r Used Vehicles API</h1>
+    <a href="http://localhost:3000/api/v1/vehicles">Vehicles Index</a></br>
+    <a href="http://localhost:3000/api/v1/makes">Makes Index</a></br>
+    <a href="http://localhost:3000/api/v1/models">Models Index</a></br>
+    <a href="http://localhost:3000/api/v1/options">Options Index</a></br>
+    <div class="diary-body">
+      <div class='col-first table-first'>
+        <table class='api-table'>
+          <h3>* Makes *</h3>
+          <thead class='table-header' id="Makes-table">
+            <tr>
+              <th class='api-name cell-one'>HTTP VERB</th><th class='cell-two'>api endpoint route</th>
+            </tr>
+          </thead>
+          <tbody class='tbod'>
+            <tr>
+              <td class='cell-one'>GET</td><td class='api-endpoint'>/api/v1/makes</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>GET</td><td class='api-endpoint'>/api/v1/makes/:id</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>POST</td><td class='api-endpoint'>/api/v1/makes/{query_string}</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>PUT</td><td class='api-endpoint'>/api/v1/makes/:id/{query_string}</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>DELETE</td><td class='api-endpoint'>/api/v1/makes/:id</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class='col-second table-second'>
+        <table class="api-table" id="Models-table">
+          <h3>* Models *</h3>
+          <thead class='table-header'>
+            <tr>
+              <th class='api-name cell-one'>HTTP VERB</th><th class='cell-two'>api endpoint route</th>
+            </tr>
+          </thead>
+          <tbody class='tbod'>
+            <tr>
+              <td class='cell-one'>GET</td><td class='api-endpoint'>/api/v1/models</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>GET</td><td class='api-endpoint'>/api/v1/models/:id</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>POST</td><td class='api-endpoint'>/api/v1/models/{query_string}</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>PUT</td><td class='api-endpoint'>/api/v1/models/:id/{query_string}</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>DELETE</td><td class='api-endpoint'>/api/v1/models/:id</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class='col-first table-third'>
+        <table class="api-table" id="Vehicles-table">
+          <h3>* Vehicles *</h3>
+          <thead class='table-header'>
+            <tr>
+              <th class='api-name cell-one'>HTTP VERB</th><th class='cell-two'>api endpoint route</th>
+            </tr>
+          </thead>
+          <tbody class='tbod'>
+            <tr>
+              <td class='cell-one'>GET</td><td class='api-endpoint'>/api/v1/vehicles</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>GET</td><td class='api-endpoint'>/api/v1/vehicles/:id</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>POST</td><td class='api-endpoint'>/api/v1/vehicles/{query_string}</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>PUT</td><td class='api-endpoint'>/api/v1/vehicles/:id/{query_string}</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>DELETE</td><td class='api-endpoint'>/api/v1/vehicles/:id</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class='col-second table-fourth'>
+        <table class="api-table" id="Option-table">
+          <h3>* Options *</h3>
+          <thead class='table-header'>
+            <tr>
+              <th class='api-name cell-one'>HTTP VERB</th><th class='cell-two'>api endpoint route</th>
+            </tr>
+          </thead>
+          <tbody class='tbod'>
+            <tr>
+              <td class='cell-one'>GET</td><td class='api-endpoint'>/api/v1/options</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>GET</td><td class='api-endpoint'>/api/v1/options/:id</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>POST</td><td class='api-endpoint'>/api/v1/options/{query_string}</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>PUT</td><td class='api-endpoint'>/api/v1/options/:id/{query_string}</td>
+            </tr>
+            <tr>
+              <td class='cell-one'>DELETE</td><td class='api-endpoint'>/api/v1/options/:id</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr>
+    </div>
+    <script src="main.bundle.js"></script>
+  </body>
+</html>
