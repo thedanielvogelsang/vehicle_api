@@ -1,11 +1,17 @@
 # README
 
-This project, built over the course of 2 days, is a test-driven RESTful json-returning public API for a fictional auto dealership, which has Create, Read, Update and Destroy capability for 4 associated resources:
+This project, built over the course of 2 days, is a test-driven RESTful public API for a fictional auto dealership, which has Create, Read, Update and Destroy capability for 4 associated resources:
 
 * VEHICLES
 * MAKES
 * MODELS
 * OPTIONS
+
+It is a Rails app, and uses RSpec for testing, along with shoulda-matchers for Active Record validations.
+
+The JSON responses have been serialized, using ActiveModel::Serializers and the gem active_model_serializers.
+
+Responses have been cached using Rails cache.
 
 Data is populated by first downloading a schema and dataset from a fellow github user kind enough to supply it, as well as several different datasets from the Faker gem -- then this vehicle_api functions as the webserver spitting out json responses to restful requests.
 
