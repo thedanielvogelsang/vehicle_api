@@ -1,0 +1,90 @@
+body{
+  padding-left: 0px;
+  background-image: url('./lib/images/rough-ecru.png');
+}
+
+a{
+  margin-left: 40px;
+}
+
+.diary-body {
+  padding: 30px;
+  padding-top: 0px;
+  padding-right: 10px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-left: 40px;
+  margin-right: 0px;
+  border-left: 2px solid black;
+  font-family: "Georgia", "Palatino", serif;
+}
+
+h1{
+  width: 100%;
+  padding-left: 20px;
+  text-align: left;
+  background-color: white;
+}
+h3{
+  width: 50%;
+  padding: 10px;
+  padding-bottom: 3px;
+  color: white;
+  border-bottom: 3px solid rgb(81,87,96);
+  border-left: 3px dashed rgb(81,87,96);
+  background-color: rgb(144, 22, 160);
+  font-size: 1.5em;
+  text-decoration: underline;
+  font-weight: bolder;
+  font-family: cursive;
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+
+table{
+  border: 3px solid rgb(81,87,96);
+  margin-bottom: 30px;
+  background: white;
+  padding: 10px;
+  margin-right: 10px;
+  max-width:500px;
+}
+
+.diary-body, th {
+  padding: 10px;
+  padding-left: 7px;
+}
+.diary-body, td {
+  padding: 5px;
+  padding-left: 20px;
+}
+.col-first{
+  display: inline-block;
+  width: 45%;
+  margin-right: 10px;
+}
+
+.col-second{
+  display: inline-block;
+  width: 45%;
+}
+
+.cell-one{
+  min-width: 100px;
+}
+
+.cell-two{
+  min-width: 330px;
+}
+
+thead.table-header{
+  text-align: left;
+  background-color: #15a092;
+  font-weight: bold;
+
+}
+
+.api-endpoint{
+  text-align: left;
+  font-size: 1.3em;
+}

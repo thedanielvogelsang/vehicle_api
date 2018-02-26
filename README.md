@@ -1,6 +1,6 @@
 # README
 
-This project, built over the course of 2 days, is a RESTful json-returning public API for a fictional auto dealership, which has Create, Read, Update and Destroy capability for 4 associated resources:
+This project, built over the course of 2 days, is a test-driven RESTful json-returning public API for a fictional auto dealership, which has Create, Read, Update and Destroy capability for 4 associated resources:
 
 * VEHICLES
 * MAKES
@@ -21,6 +21,15 @@ Makes are linked to models, and vehicles inherit from model and make; Vehicles a
     ruby (installation instructions here[https://www.ruby-lang.org/en/documentation/installation/])
 
     rails (installation instructions here[http://blog.teamtreehouse.com/install-rails-5-mac])
+
+* Additional Gems
+  gem 'mysql2', '0.3.18'
+  gem 'active_model_serializers', '0.10.0'
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+
 
 ## Deployment instructions
   clone repo and cd into it
@@ -57,11 +66,13 @@ Makes are linked to models, and vehicles inherit from model and make; Vehicles a
 
 ===== ====== ====== ====== ====== ====== ====== ====== ===== ===== ===== ===== ===== ===== =====
 
+In addition to the API, every model and endpoint shares a nest of happy and sad tests.
+
   **TO SEE THE API ONLINE, run**
   ```shell
     rails s
   ```
-  and visit "http://localhost:3000/api/v1/ \<resource\>" to see each json response,
+  and visit "http://localhost:3000" to see the home page,
   **use Postman to test the create, update, and delete functionality.**
 
 ====== ****** ====== ****** ====== ****** ======
@@ -82,8 +93,8 @@ api resource list (all RESTful routes for each resource are available for CRUD):
 ### Makes
   * GET /api/v1/makes
   * GET /api/v1/makes/:id
-  * POST /api/v1/makes?<options>
-  * PUT/PATCH /api/v1/makes/:id?<options>
+  * POST /api/v1/makes?<query_string>
+  * PUT/PATCH /api/v1/makes/:id?<query_string>
   * DELETE /api/v1/makes/:id
 
   ```shell
@@ -101,8 +112,8 @@ api resource list (all RESTful routes for each resource are available for CRUD):
 ### Models
   * GET /api/v1/models
   * GET /api/v1/models/:id
-  * POST /api/v1/models?\<options\>
-  * PUT/PATCH /api/v1/models/:id?\<options\>
+  * POST /api/v1/models?\<query_string\>
+  * PUT/PATCH /api/v1/models/:id?\<query_string\>
   * DELETE /api/v1/models/:id
 
   ```shell
@@ -119,8 +130,8 @@ api resource list (all RESTful routes for each resource are available for CRUD):
 ### Vehicles
   * GET /api/v1/vehicles
   * GET /api/v1/vehicles/:id
-  * POST /api/v1/vehicles?\<options\>
-  * PUT/PATCH /api/v1/vehicle/:id?\<options\>
+  * POST /api/v1/vehicles?\<query_string\>
+  * PUT/PATCH /api/v1/vehicle/:id?\<query_string\>
   * DELETE /api/v1/vehicles/:id
 
   ```shell
@@ -137,8 +148,8 @@ api resource list (all RESTful routes for each resource are available for CRUD):
 ### Options
   * GET /api/v1/options
   * GET /api/v1/options/:id
-  * POST /api/v1/options?\<options\>
-  * PUT/PATCH /api/v1/options/:id?\<options\>
+  * POST /api/v1/options?\<query_string\>
+  * PUT/PATCH /api/v1/options/:id?\<query_string\>
   * DELETE /api/v1/options/:id
 
   ```shell
