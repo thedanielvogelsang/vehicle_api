@@ -29,16 +29,23 @@ Makes are linked to models, and vehicles inherit from model and make; Vehicles a
     rails (installation instructions here[http://blog.teamtreehouse.com/install-rails-5-mac])
 
 * Additional Gems
+
   gem 'mysql2', '0.3.18'
+
   gem 'active_model_serializers', '0.10.0'
+
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
   gem 'shoulda-matchers'
+
   gem 'database_cleaner'
+
   gem 'rspec-rails'
 
 
 ## Deployment instructions
   clone repo and cd into it
+
   run
   ```shell
     gem install bundle
